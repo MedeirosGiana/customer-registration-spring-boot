@@ -1,5 +1,10 @@
 # CRUD DE CLIENTES
+<p align='center'> 
+    <img src="https://img.shields.io/badge/Spring_Boot  V3.1.1-F2F4F9?style=for-the-badge&logo=spring-boot"/>
+    <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>  
+</p>
 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/MedeirosGiana/customer-registration-spring-boot.git/blob/main/LICENSE)
 #### Projeto Java Spring Boot contendo CRUD completo de Web Services Rest, para acesso aos recursos de cliente conforme abaixo:
 
 - Busca paginada de clientes, podendo ser personalizada,
