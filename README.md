@@ -33,6 +33,10 @@
 - Postam
 
 #### Acesso ao projeto:
+- Fazer o clone do projeto na sua máquina:
+ ```shell script
+https://github.com/MedeirosGiana/customer-registration-spring-boot.git
+```
 - Para executar o projeto no terminal, digite o seguinte  comando:
 ```shell script
 mvn spring-boot:run 
