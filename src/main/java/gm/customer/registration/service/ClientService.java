@@ -4,6 +4,7 @@ import gm.customer.registration.dto.ClientDTO;
 import gm.customer.registration.entity.Client;
 import gm.customer.registration.repository.ClientRepository;
 import gm.customer.registration.service.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,6 +38,17 @@ public class ClientService {
         entity = repository.save(entity);
         return new ClientDTO(entity);
     }
+    @Transactional
+    public ClientDTO update(Long id, ClientDTO clientDTO) {
+        try {
+            Client entity = repository.getReferenceById(id);
+            copyDtoToEntity(clientDTO,entity);
+            return new ClientDTO(entity);
+        }catch (EntityNotFoundException e){
+            throw  new ResourceNotFoundException("Id não encontrado "+ id);
+        }
+    }
+
 
     private void copyDtoToEntity(ClientDTO clientDTO, Client entity) {
         entity.setName(clientDTO.getName());
@@ -45,4 +57,6 @@ public class ClientService {
         entity.setBirthDate(clientDTO.getBirthDate());
         entity.setChildren(clientDTO.getChildren());
     }
+
+
 }

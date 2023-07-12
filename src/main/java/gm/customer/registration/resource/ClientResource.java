@@ -30,7 +30,7 @@ public class ClientResource {
         Page<ClientDTO> list = service.findAllPaged(pageRequest);
         return ResponseEntity.ok().body(list);
     }
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<ClientDTO> findById(@PathVariable Long id){
         ClientDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
@@ -39,8 +39,14 @@ public class ClientResource {
     @PostMapping
     public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO clientDTO){
         clientDTO = service.insert(clientDTO);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(clientDTO).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(clientDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(clientDTO);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO clientDTO){
+        clientDTO = service.update(id,clientDTO);
+        return  ResponseEntity.ok().body(clientDTO);
     }
 
 }
