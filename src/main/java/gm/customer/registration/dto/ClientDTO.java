@@ -1,5 +1,7 @@
 package gm.customer.registration.dto;
 
+import gm.customer.registration.entity.Client;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,7 +17,7 @@ public class ClientDTO implements Serializable {
     private LocalDate birthDate;
     private Integer children;
 
-    public  ClientDTO(){
+    public  ClientDTO(Client x){
     }
 
     public ClientDTO(Long id, String name, String cpf, Double income, LocalDate birthDate, Integer children) {
