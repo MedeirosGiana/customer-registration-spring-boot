@@ -1,6 +1,7 @@
 package gm.customer.registration.resource;
 
 import gm.customer.registration.dto.ClientDTO;
+import gm.customer.registration.entity.Client;
 import gm.customer.registration.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,6 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/clients")
@@ -32,5 +36,11 @@ public class ClientResource {
         return ResponseEntity.ok().body(dto);
     }
 
+    @PostMapping
+    public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO clientDTO){
+        clientDTO = service.insert(clientDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(clientDTO).toUri();
+        return ResponseEntity.created(uri).body(clientDTO);
+    }
 
 }
