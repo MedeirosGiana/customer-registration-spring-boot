@@ -7,8 +7,8 @@
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/MedeirosGiana/customer-registration-spring-boot.git/blob/main/LICENSE)
 #### Projeto Java Spring Boot contendo CRUD completo de Web Services Rest, para acesso aos recursos de cliente conforme abaixo:
 
-- Busca paginada de clientes, podendo ser personalizada,
-- Busca de cliente por id informado
+- Busca paginada de clientes podendo ser personalizada,
+- Busca de cliente por id informado,
 - Buscar todos os clientes,
 - Atualizar cliente,
 - Deletar cliente.
