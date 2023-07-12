@@ -1,7 +1,6 @@
 package gm.customer.registration.resource;
 
 import gm.customer.registration.dto.ClientDTO;
-import gm.customer.registration.entity.Client;
 import gm.customer.registration.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +29,7 @@ public class ClientResource {
         Page<ClientDTO> list = service.findAllPaged(pageRequest);
         return ResponseEntity.ok().body(list);
     }
-    @GetMapping(value = "/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ClientDTO> findById(@PathVariable Long id){
         ClientDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
@@ -43,10 +42,15 @@ public class ClientResource {
         return ResponseEntity.created(uri).body(clientDTO);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO clientDTO){
         clientDTO = service.update(id,clientDTO);
         return  ResponseEntity.ok().body(clientDTO);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

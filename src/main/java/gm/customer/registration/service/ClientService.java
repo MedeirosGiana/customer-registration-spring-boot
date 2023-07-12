@@ -3,9 +3,12 @@ package gm.customer.registration.service;
 import gm.customer.registration.dto.ClientDTO;
 import gm.customer.registration.entity.Client;
 import gm.customer.registration.repository.ClientRepository;
+import gm.customer.registration.service.exceptions.DatabaseException;
 import gm.customer.registration.service.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -46,6 +49,16 @@ public class ClientService {
             return new ClientDTO(entity);
         }catch (EntityNotFoundException e){
             throw  new ResourceNotFoundException("Id não encontrado "+ id);
+        }
+    }
+
+    public void  delete(Long id){
+        try {
+            repository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundException("Id não exixtente "+ id);
+        }catch (DataIntegrityViolationException e){
+            throw  new DatabaseException("Violação de integridade");
         }
     }
 
